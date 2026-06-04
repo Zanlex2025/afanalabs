@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Afana Labs Website
 
 A premium, fully responsive dark-mode website for Afana Labs and Phantom Depth Studio.
@@ -43,3 +44,7 @@ Then visit `http://localhost:8000`
 - Update content in `index.html`
 - Adjust colors and effects in `styles.css`
 - Modify animations in `script.js`
+=======
+# afanalabs
+The official open-source hub for Afanalabs. Centralized on my projects
+>>>>>>> f7cf3fb162959c0fcc73aac198bb17885c918b94
