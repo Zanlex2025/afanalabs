@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afana Labs | Start Your Official Project</title>
+    <meta name="description" content="Start your official project with Afana Labs, the main studio for Phantom Depth Studio games, app development, ebooks and collaborations.">
+    <meta name="author" content="Afana Labs">
+    <link rel="icon" type="image/png" href="images/afanalabs favicon.png">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #020615;
+            --panel: rgba(2, 6, 21, 0.78);
+            --panel-strong: rgba(4, 14, 40, 0.88);
+            --border: rgba(115, 185, 255, 0.18);
+            --accent: #57a0ff;
+            --accent-soft: rgba(87, 160, 255, 0.2);
+            --white: #f4f7ff;
+            --muted: rgba(244, 247, 255, 0.82);
+            --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: radial-gradient(circle at top, rgba(87, 160, 255, 0.12), transparent 35%), var(--bg);
+            color: var(--white);
+            line-height: 1.5;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 21, 0.55);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .video-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .video-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 32px 24px 48px;
+        }
+
+        .content {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            padding: 28px 24px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+        }
+
+        .brand-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            font-size: 0.92rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 4vw, 4.2rem);
+            line-height: 1.05;
+            margin: 0;
+            letter-spacing: -0.04em;
+            text-shadow: 0 0 28px rgba(87, 160, 255, 0.33);
+        }
+
+        p.lead {
+            max-width: 780px;
+            margin: 24px 0 0;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .section {
+            margin-top: 48px;
+        }
+
+        .section + .section {
+            margin-top: 42px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            font-size: 1.18rem;
+            color: #e5f0ff;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 48px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent));
+        }
+
+        .project-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .project-card {
+            padding: 24px;
+            border-radius: 22px;
+            background: rgba(9, 20, 42, 0.75);
+            border: 1px solid rgba(87, 160, 255, 0.13);
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(87, 160, 255, 0.45);
+            background: rgba(12, 28, 65, 0.88);
+        }
+
+        .project-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .project-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.98rem;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #f7f9ff;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 16px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(11, 22, 44, 0.95);
+            color: #ffffff;
+            font: inherit;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: rgba(87, 160, 255, 0.45);
+            box-shadow: 0 0 0 4px rgba(87, 160, 255, 0.12);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .submit-row {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .button-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
+            padding: 0 28px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #57a0ff, #1b5bcc);
+            color: #020615;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 16px 34px rgba(42, 112, 223, 0.25);
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 44px rgba(42, 112, 223, 0.32);
+        }
+
+        .connect-links {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        }
+
+        .connect-link {
+            display: block;
+            padding: 18px 22px;
+            border-radius: 18px;
+            background: rgba(12, 26, 52, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            color: var(--white);
+            text-decoration: none;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .connect-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(87, 160, 255, 0.35);
+        }
+
+        .connect-link span {
+            display: block;
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            color: rgba(244, 247, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 720px) {
+            .content {
+                padding: 20px;
+                border-radius: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-bg" aria-hidden="true">
+        <video autoplay muted loop webkit-playsinline x5-playsinline>
+            <source src="afanalabs video.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+    <div class="page-wrapper">
+        <main class="content" role="main">
+            <div class="brand-label">Afana Labs Studio</div>
+            <h1>Afana Labs | Start Your Official Project</h1>
+            <p class="lead">Afana Labs is the main parent studio for Phantom Depth Studio games, app development (Silent Talk, Study OS), ebooks & collaborations. Begin your next official project with our premium tech studio workflow.</p>
+
+            <section class="section" aria-labelledby="project-selection-title">
+                <div class="section-title" id="project-selection-title">Project Type Selection</div>
+                <div class="project-types">
+                    <article class="project-card">
+                        <h3>Game Development</h3>
+                        <p>Build immersive narrative and gameplay experiences under Phantom Depth Studio.</p>
+                    </article>
+                    <article class="project-card">
+                        <h3>App Design & Development</h3>
+                        <p>Create modern apps like Silent Talk, Study OS, or custom business tools.</p>
+                    </article>
+                    <article class="project-card">
+                        <h3>eBooks & Publishing</h3>
+                        <p>Produce premium digital books, guides, or storytelling assets.</p>
+                    </article>
+                    <article class="project-card">
+                        <h3>Collaborations</h3>
+                        <p>Partner with our teams on branded content, creative campaigns and UX projects.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section" aria-labelledby="project-form-title">
+                <div class="section-title" id="project-form-title">Project Idea Submission</div>
+                <form class="form-grid" action="#" method="post">
+                    <div class="form-row">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="project-type">Project Type</label>
+                        <select id="project-type" name="project-type" required>
+                            <option value="">Select a project</option>
+                            <option value="game">Game Development</option>
+                            <option value="app">App Development</option>
+                            <option value="ebook">eBook / Publishing</option>
+                            <option value="collaboration">Collaboration</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="idea">Project Idea / Message</label>
+                        <textarea id="idea" name="idea" placeholder="Describe your idea or collaboration brief..."></textarea>
+                    </div>
+                    <div class="submit-row">
+                        <button type="submit" class="button-primary">Send Project Brief</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="section" aria-labelledby="build-together-title">
+                <div class="section-title" id="build-together-title">Build Together</div>
+                <div class="connect-links">
+                    <a class="connect-link" href="https://github.com/Evajoyce21" target="_blank" rel="noopener noreferrer">GitHub<span>Explore our repositories and studio tools</span></a>
+                    <a class="connect-link" href="https://discord.gg/zk9UVDPEWg" target="_blank" rel="noopener noreferrer">Discord<span>Join the creative community chat</span></a>
+                    <a class="connect-link" href="mailto:13022350049@139.com">Community & Press<span>Reach out for news, events, and community updates</span></a>
+                    <a class="connect-link" href="mailto:prince1er@qq.com">Business Inquiry<span>Professional collaboration and business requests</span></a>
+                    <a class="connect-link" href="mailto:creative@126.com">Creative Collaborations<span>Submit creative partnership proposals</span></a>
+                </div>
+            </section>
+
+            <footer class="footer">Stay Inspired | Afana Labs 2026</footer>
+        </main>
+    </div>
+</body>
+</html>
